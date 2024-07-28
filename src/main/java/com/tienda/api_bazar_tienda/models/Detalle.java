@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -31,6 +32,10 @@ public class Detalle {
     private Producto producto;
 
     @Column(nullable = false)
-    @NotNull(message = "El total no puede estar vacio")
-    private Double total;
+    @Min(value = 0, message = "El valor minimo es 0")
+    private Integer cantidad;
+
+    @Column(name = "sub_total", nullable = false)
+    @Min(value = 0, message = "El valor minimo es 0")
+    private Double subTotal;
 }
